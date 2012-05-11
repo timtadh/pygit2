@@ -1044,7 +1044,20 @@ Repository_TreeBuilder(Repository *self, PyObject *args)
 
 static PyMethodDef Repository_methods[] = {
     {"create_commit", (PyCFunction)Repository_create_commit, METH_VARARGS,
-     "Create a new commit object, return its SHA."},
+     "Create a new commit object, return its SHA.\n"
+     "@param update_ref : If not None, name of the reference that will be\n"
+     "       updated to point to this commit. If the reference is not direct, it\n"
+     "       will be resolved to a direct reference. Use \"HEAD\" to update the\n"
+     "       HEAD of the current branch and make it point to this commit. If the\n"
+     "       reference doesn't exist yet, it will be created.\n"
+     "@param author : Signature representing the author and\n"
+     "       the authory time of this commit\n"
+     "@param commiter : Signature representing the committer and the commit\n"
+     "       time of this commit\n"
+     "@param message : The commit message\n"
+     "@param oid : the object id of the the Tree\n"
+     "@param parents : a list of parents for the commit\n"
+     "@returns the oid of the new commit object" },
     {"create_tag", (PyCFunction)Repository_create_tag, METH_VARARGS,
      "Create a new tag object, return its SHA."},
     {"walk", (PyCFunction)Repository_walk, METH_VARARGS,
