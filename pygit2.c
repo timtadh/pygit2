@@ -1496,7 +1496,7 @@ static PyGetSetDef TreeEntry_getseters[] = {
 
 static PyMethodDef TreeEntry_methods[] = {
     {"to_object", (PyCFunction)TreeEntry_to_object, METH_NOARGS,
-       "Look up the corresponding object in the repo."
+       "Look up the corresponding object in the repo. "
        "(equivalent to repo[entry.oid])\n"
        "@returns (pygit2.Object)"
     },
@@ -2308,7 +2308,8 @@ Index_write_tree(Index *self)
 
 static PyMethodDef Index_methods[] = {
     {"add", (PyCFunction)Index_add, METH_VARARGS,
-     "Add or update an index entry from a file in disk."},
+     "Add or update an index entry from a file on disk.\n"
+     "@param path : the path to the file to add to the index."},
     {"clear", (PyCFunction)Index_clear, METH_NOARGS,
      "Clear the contents (all the entries) of an index object."},
     {"_find", (PyCFunction)Index_find, METH_O,
@@ -2321,9 +2322,11 @@ static PyMethodDef Index_methods[] = {
      "Write an existing index object from memory back to disk using an"
      " atomic file lock."},
     {"read_tree", (PyCFunction)Index_read_tree, METH_O,
-     "Update the index file from the given tree object."},
+     "Update the index file from the given tree object.\n"
+     "@param tree : the pygit2.Tree object to update from"},
     {"write_tree", (PyCFunction)Index_write_tree, METH_NOARGS,
-     "Create a tree object from the index file, return its oid."},
+     "Create a tree object from the index file, return its oid.\n"
+     "@returns (byte string) : the oid of the new tree"},
     {NULL}
 };
 
