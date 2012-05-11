@@ -1217,7 +1217,9 @@ static PyGetSetDef Object_getseters[] = {
 
 static PyMethodDef Object_methods[] = {
     {"read_raw", (PyCFunction)Object_read_raw, METH_NOARGS,
-     "Read the raw contents of the object from the repo."},
+       "Read the raw contents of the object from the repo.\n"
+       "@returns (byte string)"
+    },
     {NULL}
 };
 
@@ -1494,7 +1496,10 @@ static PyGetSetDef TreeEntry_getseters[] = {
 
 static PyMethodDef TreeEntry_methods[] = {
     {"to_object", (PyCFunction)TreeEntry_to_object, METH_NOARGS,
-     "Look up the corresponding object in the repo."},
+       "Look up the corresponding object in the repo."
+       "(equivalent to repo[entry.oid])\n"
+       "@returns (pygit2.Object)"
+    },
     {NULL, NULL, 0, NULL}
 };
 
