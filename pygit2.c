@@ -2887,7 +2887,8 @@ static PyMethodDef Reference_methods[] = {
     {"delete", (PyCFunction)Reference_delete, METH_NOARGS,
      "Delete this reference. It will no longer be valid!"},
     {"rename", (PyCFunction)Reference_rename, METH_O,
-      "Rename the reference."},
+      "Rename the reference.\n"
+      "@param name : the new name of the reference."},
     {"reload", (PyCFunction)Reference_reload, METH_NOARGS,
      "Reload the reference from the file-system."},
     {"resolve", (PyCFunction)Reference_resolve, METH_NOARGS,
@@ -3156,9 +3157,24 @@ discover_repository(PyObject *self, PyObject *args)
 
 static PyMethodDef module_methods[] = {
     {"init_repository", init_repository, METH_VARARGS,
-     "Creates a new Git repository in the given folder."},
+     "Creates a new Git repository in the given folder.\n"
+     "@param path : the path to the folder.\n"
+     "@param bare : a (boolean) indicating whether this should be a"
+                  " bare repository.\n"
+     "@returns a new repository object."},
     {"discover_repository", discover_repository, METH_VARARGS,
-     "Look for a git repository and return its path."},
+     "Look for a git repository and return its path.\n"
+     "@param start_path : The base path where the lookup starts.\n"
+     "@param (optional) across_fs : (boolean) If true, then the lookup will\n"
+     "                  not stop when a filesystem device change is detected \n"
+     "                  while exploring parent directories.\n"
+     "@param (optional) ceiling_dirs : A GIT_PATH_LIST_SEPARATOR separated\n"
+     "                  list of absolute symbolic link free paths. The\n"
+     "                  lookup will stop when any of this paths is reached.\n"
+     "                  Note that the lookup always performs on start_path no\n"
+     "                  matter start_path appears in ceiling_dirs\n"
+     "                  ceiling_dirsmight be NULL (which is equivalent to an\n"
+     "                  empty string)"},
     {NULL}
 };
 
